@@ -1,0 +1,33 @@
+{
+  "name": "uploader",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".js/server.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Christian Di Lorenzo",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "gulp": "~3.8.8",
+    "hapi": "~6.9.0",
+    "bluebird": "~2.3.2",
+    "gulp-livescript": "~1.1.0",
+    "LiveScript": "~1.2.0",
+    "gulp-concat": "~2.4.1",
+    "gulp-sourcemaps": "~1.2.2",
+    "express": "~4.9.5",
+    "gulp-beautify": "~1.1.0",
+    "gulp-filter": "~1.0.2",
+    "gulp-print": "~1.1.0",
+    "body-parser": "~1.8.4",
+    "connect-busboy": "0.0.2",
+    "multiparty": "~3.3.2",
+    "path": "~0.4.9"
+  },
+  "devDependencies": {
+    "LiveScript": "~1.2.0",
+    "grunt": "~0.4.5",
+    "grunt-livescript": "~0.5.1"
+  }
+}
