@@ -1,0 +1,109 @@
+body {
+  background: #35495D;
+  margin: 0;
+}
+
+.page-wrap {
+  padding: 20px;
+}
+
+.content {
+  font-family: "aktiv-grotesk-std",sans-serif;
+  text-align: center;
+  color: white;
+  margin: 0 auto;
+  margin-top: 40px;
+  max-width: 500px;
+  max-height: 500px;
+  background: #3A99D8;
+  padding: 25px;
+  padding-top: 10px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-family: "aktiv-grotesk-std",sans-serif;
+  font-weight: 300;
+  font-size: 28pt;
+}
+
+input {
+  font-family: "aktiv-grotesk-std",sans-serif;
+  margin-top: 10px;
+  min-width: 220px;
+}
+
+input[type=text] {
+  display: inline !important;
+}
+
+input[type=submit] {
+  margin: 0 auto;
+  margin-top: 15px;
+  border-radius: 5px;
+  border: 0;
+  height: 35px;
+  color: #3A99D8;
+  font-weight: bold;
+  font-size: 12pt;
+  background: white;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #F5F5F5;
+}
+
+.error {
+  background-color: #D85D56;
+  border-radius: 5px;
+  text-align: left;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 2px solid #B74E48;
+}
+
+.success {
+  background-color: #01B876;
+  border-radius: 5px;
+  text-align: left;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 2px solid #029D64;
+}
+
+.pace {
+  -webkit-pointer-events: none;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.pace .pace-progress {
+  display: block;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  height: 12px;
+  background: #29d;
+
+  -webkit-transition: -webkit-transform .3s, width 1s;
+  -moz-transition: width 1s;
+  -o-transform: width 1s;
+  transition: transform .3s, width 1s;
+
+  -webkit-transform: translateY(-50px);
+  transform: translateY(-50px);
+
+  pointer-events: none;
+}
+
+.pace.pace-active .pace-progress {
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+}

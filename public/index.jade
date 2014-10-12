@@ -1,0 +1,25 @@
+doctype html
+html(lang="en")
+  head
+    link(rel="stylesheet",type="text/css",href="forms-min.css")
+    link(rel="stylesheet",type="text/css",href="style.css")
+    script(src="jquery-1.11.1.min.js")
+    script(src="upload.js")
+    script(src="pace.min.js")
+    script(src="//use.typekit.net/wkz3yii.js")
+    script
+      | try{Typekit.load();}catch(e){}
+    title| Upload
+    != LRScript
+  body
+    .page-wrap
+      .content
+        h1 Upload File
+        div.error(style="display: none;")
+        div.success(style="display: none;")
+        form.pure-form#upload
+          input(type="file",id="file",name="file")
+          br
+          input(type="text",id="token",name="token",placeholder="Token")
+          br
+          input(type="submit",value="Submit")

@@ -1,8 +1,8 @@
-require! <[ gulp gulp-livescript gulp-concat gulp-sourcemaps express gulp-beautify gulp-filter gulp-print ./server ]>
+require! <[ gulp gulp-livescript gulp-concat gulp-sourcemaps express gulp-beautify gulp-filter gulp-print express-livereload ./server ]>
 
 gulp.task 'serve' ->
   server.listen 3000
-  # expressLivereload server, watchDir: 'public/'
+  expressLivereload server, watchDir: './'
 
 gulp.task 'build:js' ->
   gulp.src jsFiles.map(-> 'app/scripts/' + it)
