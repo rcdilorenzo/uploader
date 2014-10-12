@@ -1,6 +1,6 @@
 require! <[ express fs multiparty path ]>
 
-tokens = <[ nick ]>
+tokens = <[ nick2014 ]>
 uploadsPath = path.join __dirname, 'uploads'
 
 app = express!
@@ -15,7 +15,6 @@ validToken = (token) ->
 
 app.post '/upload', (req, res, next) ->
   form = new multiparty.Form!
-  valid = false
   didUpload = false
 
   form.on 'error' (err) ->
