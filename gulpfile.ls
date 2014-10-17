@@ -5,14 +5,13 @@ jsFiles = <[ jquery*.js upload.js pace.min.js *.js ]>
 gulp.task 'serve' <[build:js]> ->
   gulp.watch ['public/**/*'], <[ build:js ]>
   server.listen 3000
-  expressLivereload server, watchDir: './'
+  # expressLivereload server, watchDir: './'
 
 gulp.task 'serve:prod' <[build:production:js]> ->
   server.listen 80
 
 gulp.task 'build:js' ->
   gulp.src jsFiles.map(-> 'public/' + it)
-    .pipe gulpBeautify { indentSize: 4 }
     .pipe gulpSourcemaps.init!
     .pipe gulpConcat('application.js')
     .pipe gulpSourcemaps.write!

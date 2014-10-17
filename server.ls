@@ -17,14 +17,17 @@ app.post '/upload', (req, res, next) ->
   form = new multiparty.Form!
   didUpload = false
 
+  name = ''
+
+  if !req.query.name
+    req.error = 'Name is required.'
+    req.errorCode = 400
+    return next!
+  else
+    name = req.query.name.replace(' ', '-')
+
   form.on 'error' (err) ->
     console.log 'Error parsing form: ' + err.stack
-
-  form.on 'field' (name, value) ->
-    unless validToken(value)
-      req.error = 'Proper validation required.'
-      req.errorCode = 401
-      next!
 
   form.on 'progress' (received, expected) ->
     console.log 'Uploading: ' + (received / expected) * 100 + '%'
@@ -33,7 +36,7 @@ app.post '/upload', (req, res, next) ->
     return part.resume! if part.filename and part.name != 'file'
     return if !part.filename or res.headersSent
 
-    targetPath = path.join uploadsPath, part.filename
+    targetPath = path.join uploadsPath, name + '-' + part.filename
     stream = fs.createWriteStream targetPath
 
     part.on 'end' (err) ->

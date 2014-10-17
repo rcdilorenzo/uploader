@@ -6,18 +6,18 @@ $(document).ready(function () {
   $('#upload').submit(function (event) {
     var formData = new FormData();
     var fileSelect = document.getElementById('file');
-    var token = document.getElementById('token').value;
+    var name = document.getElementById('name').value;
 
     var file = fileSelect.files[0];
     if (file) formData.append('file', file, file.name);
-    formData.append('token', token);
 
     $('.error').css('display', 'none');
     $('.success').css('display', 'none');
 
     Pace.track(function () {
       var xhr = new XMLHttpRequest();
-      xhr.open('POST', '/upload', true);
+      var url = '/upload?name=' + name;
+      xhr.open('POST', url, true);
       xhr.send(formData);
       xhr.onreadystatechange = function () {
         if (xhr.status != 201) {
