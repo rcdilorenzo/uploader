@@ -46,9 +46,10 @@ $(document).ready(function () {
     var formData = new FormData();
     var fileSelect = document.getElementById('file');
     var name = document.getElementById('name').value;
-    if (name.length == 0 || fileSelect.files.length == 0){
+    var email = document.getElementById('email').value;
+    if (name.length == 0 || email.length == 0 || fileSelect.files.length == 0){
       $('#submit').prop('disabled', false);
-      return showError('Name and file are both required.');
+      return showError('File, name, and email are all required.');
     }
 
     var file = fileSelect.files[0];
@@ -59,7 +60,7 @@ $(document).ready(function () {
     var xProgressID = guid();
 
     var xhr = new XMLHttpRequest();
-    var url = '/upload?X-Progress-ID=' + xProgressID + '&name=' + name;
+    var url = '/upload?X-Progress-ID=' + xProgressID + '&name=' + name + '&email=' + email + '&filename=' + file.name;
     xhr.open('POST', url, true);
     xhr.send(formData);
     xhr.onreadystatechange = function () {
@@ -76,8 +77,9 @@ $(document).ready(function () {
 
     var uploadIntervalID = setInterval(function(){
         $.get('/progress?X-Progress-ID=' + xProgressID, function(data){
-            if (data.status === 'starting' || data.progress === 100){
+            if (data.status === 'starting' || data.status === 'done' || data.progress === 100){
                 clearInterval(uploadIntervalID);
+                showSuccess('File Uploaded!');
             } else {
               updateViewUploadStatus(data);
             }

@@ -18,8 +18,14 @@ html(lang="en")
         div.success(style="display: none;")
         div.warning(style="display: none;")
         form.pure-form#upload
-          input(type="file",id="file",name="file")
-          br
-          input(type="text",id="name",name="name",placeholder="Name")
-          br
-          input(id="submit",type="submit",value="Submit")
+          fieldset
+            input(type="file",id="file",name="file")
+            br
+            .pure-control-group
+              label(for="name") Name
+              input(type="text",id="name",name="name",placeholder="Johnny Appleseed")
+            .pure-control-group
+              label(for="email") Email
+              input(type="text",id="email",name="email",placeholder="user@example.com")
+          .pure-controls
+            input(id="submit",type="submit",value="Submit")

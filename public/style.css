@@ -62,6 +62,14 @@ input[type=submit]:disabled {
   background: gray;
 }
 
+label {
+  padding-right: 10px;
+}
+
+.pure-control-group {
+  margin-left: -52px;
+}
+
 .error {
   background-color: #D85D56;
   border-radius: 5px;
