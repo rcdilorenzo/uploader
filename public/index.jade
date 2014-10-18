@@ -15,9 +15,10 @@ html(lang="en")
         h1 Upload File
         div.error(style="display: none;")
         div.success(style="display: none;")
+        div.warning(style="display: none;")
         form.pure-form#upload
           input(type="file",id="file",name="file")
           br
           input(type="text",id="name",name="name",placeholder="Name")
           br
-          input(type="submit",value="Submit")
+          input(id="submit",type="submit",value="Submit")

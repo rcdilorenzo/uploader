@@ -1,62 +1,30 @@
-require! <[ express fs multiparty path ]>
-
-tokens = <[ nick2014 ]>
-uploadsPath = path.join __dirname, 'uploads'
+require! <[ express fs path ]>
+uploadProgress = require 'node-upload-progress'
 
 app = express!
 app.set 'views' __dirname + '/public/'
 app.set 'view engine' 'jade'
 app.use express.static(__dirname + '/public')
 
-validToken = (token) ->
-  return false if !token
-  tokens.indexOf(token.toLowerCase!) != -1
+uploadsPath = path.join __dirname, 'uploads'
 
+uploadHandler = new uploadProgress.UploadHandler;
+uploadHandler.configure ->
+  this.uploadDir = uploadsPath
+  this.onEnd = (req, res) ->
+    res.status(201).send { success: true }
 
-app.post '/upload', (req, res, next) ->
-  form = new multiparty.Form!
-  didUpload = false
-
-  name = ''
-
-  if !req.query.name
-    req.error = 'Name is required.'
-    req.errorCode = 400
-    return next!
-  else
-    name = req.query.name.replace(' ', '-')
-
-  form.on 'error' (err) ->
-    console.log 'Error parsing form: ' + err.stack
-
-  form.on 'progress' (received, expected) ->
-    console.log 'Uploading: ' + (received / expected) * 100 + '%'
-
-  form.on 'part' (part) ->
-    return part.resume! if part.filename and part.name != 'file'
-    return if !part.filename or res.headersSent
-
-    targetPath = path.join uploadsPath, name + '-' + part.filename
-    stream = fs.createWriteStream targetPath
-
-    part.on 'end' (err) ->
-      res.status(201).send { success: true, filename: part.filename } unless res.headersSent
-
-    part.pipe stream
-
-  form.on 'close' ->
-    res.status(400).send { success: false, error: 'No file uploaded.' } unless res.headersSent
-
-  form.parse req
-
-app.use (req, res, next) ->
-  return next! unless req.error && req.errorCode
-  res.status(req.errorCode).send { success: false, error: req.error }
 
 app.get '/' (req, res) ->
   res.render 'index'
 
+require('./source/upload')(app, uploadHandler, uploadsPath)
+
+app.get '/progress' (req, res) ->
+  uploadHandler.progress req, res
+
 app.all '/**' (req, res) ->
   res.send 'This is not the webpage you are looking for.'
+
 
 module.exports = app

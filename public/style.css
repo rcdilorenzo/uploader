@@ -53,8 +53,13 @@ input[type=submit] {
   cursor: pointer;
 }
 
-input[type=submit]:hover {
+input[type=submit]:not(:disabled):hover {
   background-color: #F5F5F5;
+}
+
+input[type=submit]:disabled {
+  color: white;
+  background: gray;
 }
 
 .error {
@@ -75,37 +80,11 @@ input[type=submit]:hover {
   border: 2px solid #029D64;
 }
 
-.pace {
-  -webkit-pointer-events: none;
-  pointer-events: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-}
-
-.pace.pace-inactive .pace-progress {
-  display: none;
-}
-
-.pace .pace-progress {
-  position: fixed;
-  z-index: 2000;
-  top: 0;
-  right: 0;
-  height: 5rem;
-  width: 5rem;
-}
-
-.pace .pace-progress:after {
-  display: block;
-  position: absolute;
-  top: 0;
-  right: .5rem;
-  content: attr(data-progress-text);
-  font-family: "Helvetica Neue", sans-serif;
-  font-weight: 100;
-  font-size: 5rem;
-  line-height: 1;
-  text-align: right;
-  color: rgba(0, 0, 0, 0.19999999999999996);
+.warning {
+  background-color: #F3D246;
+  border-radius: 5px;
+  text-align: left;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 2px solid #029D64;
 }
