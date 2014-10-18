@@ -87,4 +87,5 @@ input[type=submit]:disabled {
   padding: 10px;
   margin-bottom: 10px;
   border: 2px solid #029D64;
+  color: black;
 }
