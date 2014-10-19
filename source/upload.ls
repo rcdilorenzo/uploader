@@ -11,9 +11,11 @@ module.exports = (app, uploadHandler, uploadsPath) ->
 
     info = fs.readFileSync infoFilePath |> JSON.parse
     info.push {
+      id: req.query['X-Progress-ID'],
       name: req.query.name,
       email: req.query.email
-      filename: req.query.filename
+      filename: req.query.filename,
+      date: new Date()
     }
     fs.writeFileSync infoFilePath, JSON.stringify(info)
 
